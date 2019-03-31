@@ -1,3 +1,6 @@
 yum groupinstall -y "Development Tools"
 yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-yum search hdf5 | awk '/hdf5/{print $1}' | tail -n+2 | xargs yum install -y
+
+# Need to compile from source for parallel support
+#yum search hdf5 | awk '/hdf5/{print $1}' | tail -n+2 | xargs yum install -y
+#yum search netcdf | awk '/netcdf/{print $1}' | tail -n+2 | xargs yum install -y
