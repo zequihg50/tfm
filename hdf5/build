@@ -8,6 +8,6 @@ wget 'https://s3.amazonaws.com/hdf-wordpress-1/wp-content/uploads/manual/HDF5/HD
 tar -xf hdf5-1.10.5.tar.gz
 cd hdf5-1.10.5
 export PATH=$PATH:/usr/lib64/openmpi/bin
-./configure --enable-parallel --prefix=/root/sw
+./configure --enable-parallel --prefix=/root/sw --enable-hl
 make
 make install

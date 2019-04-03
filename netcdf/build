@@ -1,0 +1,8 @@
+set -e
+
+yum install -y libcurl-devel zlib-devel
+git clone https://github.com/Unidata/netcdf-c
+cd netcdf-c
+CPPFLAGS="-I/usr/include/openmpi-x86_64 -I/root/sw/include" LDFLAGS="-L/root/sw/lib" ./configure --prefix /root/sw --enable-parallel
+make
+make install
