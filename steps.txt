@@ -4,3 +4,9 @@ yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarc
 # Need to compile from source for parallel support
 #yum search hdf5 | awk '/hdf5/{print $1}' | tail -n+2 | xargs yum install -y
 #yum search netcdf | awk '/netcdf/{print $1}' | tail -n+2 | xargs yum install -y
+
+# Install hdf5 and netcdf from source and parallel, see hdf5 and netcdf directories
+# Python
+yum install -y python36 python36-pip python36-devel
+export PATH=/usr/lib64/openmpi/bin:$PATH
+LDFLAGS="-L/usr/lib64/openmpi/lib" CPPFLAGS="-I/usr/include/openmpi-x86_64" pip3 install mpi4py
