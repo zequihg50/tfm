@@ -5,6 +5,8 @@ yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarc
 #yum search hdf5 | awk '/hdf5/{print $1}' | tail -n+2 | xargs yum install -y
 #yum search netcdf | awk '/netcdf/{print $1}' | tail -n+2 | xargs yum install -y
 
+yum install -y openmpi openmpi-devel
+
 # Install hdf5 and netcdf from source and parallel, see hdf5 and netcdf directories
 # Python
 yum install -y python36 python36-pip python36-devel
