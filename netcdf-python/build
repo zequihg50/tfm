@@ -1,0 +1,4 @@
+export PATH=/root/sw/bin:$PATH # nc-config
+pip3 install numpy cython
+HDF5_DIR="/root/sw" HDF5_INCDIR="/root/sw/include" HDF5_LIBDIR="/root/sw/lib" NETCDF4_DIR="/root/sw" NETCDF4_INCDIR="/root/sw/include" NETCDF4_LIBDIR="/root/sw/lib" python3 setup.py build
+HDF5_DIR="/root/sw" HDF5_INCDIR="/root/sw/include" HDF5_LIBDIR="/root/sw/lib" NETCDF4_DIR="/root/sw" NETCDF4_INCDIR="/root/sw/include" NETCDF4_LIBDIR="/root/sw/lib" python3 setup.py install

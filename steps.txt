@@ -12,3 +12,7 @@ yum install -y openmpi openmpi-devel
 yum install -y python36 python36-pip python36-devel
 export PATH=/usr/lib64/openmpi/bin:$PATH
 LDFLAGS="-L/usr/lib64/openmpi/lib" CPPFLAGS="-I/usr/include/openmpi-x86_64" pip3 install mpi4py
+
+# netcdf4-python
+git clone https://github.com/Unidata/netcdf4-python
+# see build in netcdf-python
