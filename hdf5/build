@@ -1,9 +1,9 @@
 set -e
 
 mkdir -p /root/sw
-mkdir -p /root/hdf5
+mkdir -p hdf5
 
-cd /root/hdf5
+cd hdf5
 wget 'https://s3.amazonaws.com/hdf-wordpress-1/wp-content/uploads/manual/HDF5/HDF5_1_10_5/source/hdf5-1.10.5.tar.gz'
 tar -xf hdf5-1.10.5.tar.gz
 cd hdf5-1.10.5
