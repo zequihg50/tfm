@@ -1,5 +1,7 @@
 set -e
 
+PREFIX='/home/zequi/tfm/sw'
+
 # Do this manual
 #wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 #chmod a+x Miniconda3-latest-Linux-x86_64.sh
@@ -9,12 +11,15 @@ set -e
 #~/miniconda3/bin/conda activate tfm
 
 #yum install -y python36 python36-pip python36-devel
-git clone https://github.com/Unidata/netcdf4-python
+if [ ! -d "netcdf4-python" ]; then
+	git clone https://github.com/Unidata/netcdf4-python
+fi
 cd netcdf4-python
 #git checkout v1.4.3.2
-export PATH=/usr/lib64/openmpi/bin:/root/sw/bin:$PATH # nc-config
-#pip3 install numpy cython
-HDF5_DIR="/root/sw" HDF5_INCDIR="/root/sw/include" HDF5_LIBDIR="/root/sw/lib" NETCDF4_DIR="/root/sw" NETCDF4_INCDIR="/root/sw/include" NETCDF4_LIBDIR="/root/sw/lib" python3 setup.py build
-HDF5_DIR="/root/sw" HDF5_INCDIR="/root/sw/include" HDF5_LIBDIR="/root/sw/lib" NETCDF4_DIR="/root/sw" NETCDF4_INCDIR="/root/sw/include" NETCDF4_LIBDIR="/root/sw/lib" python3 setup.py install
+export PATH=$PREFIX/bin:$PATH # nc-config
+conda activate tfm
+#sudo pip3 install numpy cython
+ HDF5_DIR="$PREFIX" HDF5_INCDIR="$PREFIX/include" HDF5_LIBDIR="$PREFIX/lib" NETCDF4_DIR="$PREFIX" NETCDF4_INCDIR="$PREFIX/include" NETCDF4_LIBDIR="$PREFIX/lib" python3 setup.py build
+HDF5_DIR="$PREFIX" HDF5_INCDIR="$PREFIX/include" HDF5_LIBDIR="$PREFIX/lib" NETCDF4_DIR="$PREFIX" NETCDF4_INCDIR="$PREFIX/include" NETCDF4_LIBDIR="$PREFIX/lib" sudo -E python3 setup.py install
 cd test
 python3 run_all.py
