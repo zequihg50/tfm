@@ -1,0 +1,17 @@
+export PREFIX='/home/zequi/tfm/sw'
+mkdir -p $PREFIX
+
+
+# Need to compile from source for parallel support
+#yum search hdf5 | awk '/hdf5/{print $1}' | tail -n+2 | xargs yum install -y
+#yum search netcdf | awk '/netcdf/{print $1}' | tail -n+2 | xargs yum install -y
+
+
+# Required packages
+yum groupinstall -y "Development Tools"
+yum install -y epel-release
+yum install -y wget openmpi openmpi-devel
+yum install -y python36 python36-pip python36-devel # netcdf4-python
+yum install -y libcurl-devel zlib-devel # for netcdf-c
+
+export PATH=/usr/lib64/openmpi/bin:$PATH

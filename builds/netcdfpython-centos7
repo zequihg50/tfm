@@ -1,0 +1,18 @@
+set -e
+
+# mpi4py
+LDFLAGS="-L/usr/lib64/openmpi/lib" CPPFLAGS="-I/usr/include/openmpi-x86_64" pip3 install mpi4py
+
+# netcdf-python
+if [ ! -d "netcdf4-python" ]; then
+  git clone https://github.com/Unidata/netcdf4-python
+fi
+pushd netcdf4-python
+git checkout v1.4.3.2
+export PATH=$PREFIX/bin:$PATH # nc-config
+sudo pip3 install numpy cython
+HDF5_DIR="$PREFIX" HDF5_INCDIR="$PREFIX/include" HDF5_LIBDIR="$PREFIX/lib" NETCDF4_DIR="$PREFIX" NETCDF4_INCDIR="$PREFIX/include" NETCDF4_LIBDIR="$PREFIX/lib" python3 setup.py build
+HDF5_DIR="$PREFIX" HDF5_INCDIR="$PREFIX/include" HDF5_LIBDIR="$PREFIX/lib" NETCDF4_DIR="$PREFIX" NETCDF4_INCDIR="$PREFIX/include" NETCDF4_LIBDIR="$PREFIX/lib" sudo -E python3 setup.py install
+cd test
+python3 run_all.py
+popd

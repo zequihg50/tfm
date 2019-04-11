@@ -1,0 +1,12 @@
+set -e
+
+if [ ! -d "netcdf-c" ]; then
+  git clone https://github.com/Unidata/netcdf-c
+fi
+pushd netcdf-c
+git checkout v4.6.3
+
+CPPFLAGS="-I/usr/include/openmpi-x86-64 -I$PREFIX/include" LDFLAGS="-L$PREFIX/lib" ./configure --prefix $PREFIX --enable-parallel
+make
+make install
+popd

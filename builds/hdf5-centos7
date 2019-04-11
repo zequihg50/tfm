@@ -1,0 +1,9 @@
+set -e
+
+wget 'https://s3.amazonaws.com/hdf-wordpress-1/wp-content/uploads/manual/HDF5/HDF5_1_10_5/source/hdf5-1.10.5.tar.gz'
+tar -xf hdf5-1.10.5.tar.gz
+pushd hdf5-1.10.5
+./configure --enable-parallel --prefix=$PREFIX --enable-hl
+make
+make install
+popd
