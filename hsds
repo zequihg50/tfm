@@ -1,0 +1,28 @@
+# create bucket (control machine)
+openstack container list
+openstack container create hsds
+
+# virtual machine
+git clone https://github.com/HDFGroup/hsds
+cd hsds/admin/config
+# edit passwd.txt
+echo '127.0.0.1 hsds.hdf.test' >> /etc/hosts
+echo '
+# openstack ec2 credentials list
+export AWS_ACCESS_KEY_ID="9a1b9204bdc44acd9ca086b5026a5d18"
+export AWS_SECRET_ACCESS_KEY="88167cd8f1034fecb2f37363f35fd505"
+export BUCKET_NAME=hsds
+export AWS_REGION="RegionOne"
+export AWS_S3_GATEWAY="https://cephrgw01.ifca.es:8080"
+export HSDS_ENDPOINT="http://hsds.hdf.test"
+' >> ~/.bashrc
+
+docker-compose build
+./runall.sh
+
+# in control machine add hsds.hdf.test to /etc/hosts and go to http://hsds.hdf.test/about
+conda create -n hsds python=3
+conda activate hsds
+conda install -y h5pyd
+
+hsconfigure # this saves into ~/.hscfg
