@@ -1,0 +1,4 @@
+- Velocidad de red entre las máquinas de cloud (red provider 2078)
+- Datos de CMIP6 - SABER EXACTAMENTE CUALES SON
+- Máquina GPFS
+  - Olvidarme de h5py parallel, esto es para HPC
