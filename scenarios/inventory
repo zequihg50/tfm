@@ -1,0 +1,3 @@
+[all]
+tfm-cliente ansible_user=ubuntu ansible_host=193.146.75.211
+tfm-servidor ansible_user=ubuntu ansible_host=193.146.75.233
