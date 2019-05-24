@@ -1,0 +1,7 @@
+[submodule "scenarios/ansible-thredds-cluster"]
+	path = scenarios/ansible-thredds-cluster
+	url = https://github.com/SantanderMetGroup/ansible-thredds-cluster
+	branch = devel
+[submodule "scenarios/jupyter4climate4r"]
+	path = scenarios/jupyter4climate4r
+	url = https://github.com/zequihg50/jupyter4climate4r
