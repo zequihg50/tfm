@@ -1,5 +1,5 @@
 - name: Deploy TFM client
-  hosts: tfm-cliente
+  hosts: all # we want the client also in the server, for netcdf4 local testing
   vars:
     user: "{{ ansible_user }}"
     jupyterhub_domain: 193.146.75.211
@@ -8,6 +8,7 @@
     jupyterhub_docker_image: zequihg50/tfm
   vars_files:
     - authenticator-{{ inventory_hostname }}.yml
+  tags: jupyterhub
   roles:
     - jupyterhub
   pre_tasks:
@@ -26,6 +27,20 @@
     - name: Copy user whitelist
       copy: src=tfm.whitelist dest={{ jupyterhub_runtime }}/whitelist
 
+    - name: Template httpd conf
+      become: True
+      template: src={{ playbook_dir }}/jupyterhub.conf.j2 dest=/etc/apache2/sites-available/jupyterhub.conf
+      notify:
+        - restart httpd
+
+    - name: Restart jupyterhub
+      become: True
+      service: name=jupyterhub state=restarted
+  handlers:
+    - name: restart httpd
+      become: True
+      service: name=apache2 state=restarted
+
 - name: Deploy TFM server
   hosts: tfm-servidor
   vars:
@@ -34,7 +49,9 @@
     jdk_root: "{{ ansible_env.HOME }}/jdk"
     tomcat_home: "{{ root }}"
     tomcat_base: "{{ ansible_env.HOME }}"
+    tds_content_root_path: "{{ tomcat_home }}/content"
     tds_root_catalog: catalog.xml
+  tags: tds
   roles:
     - role: jdk-source
     - role: tomcat-source
@@ -51,7 +68,7 @@
       tds_content_root_path: "{{ root }}"
       tds_context: thredds
   tasks:
-    - import_tasks: ../../utils/tomcat-service.yml
+    - import_tasks: ansible-thredds-cluster/utils/tomcat-service.yml
       vars:
         tomcats: [tds]
       environment:
