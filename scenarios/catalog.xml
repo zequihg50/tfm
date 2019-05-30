@@ -19,7 +19,15 @@
     <service base="/thredds/uddc/" name="uddc" serviceType="UDDC" />
   </service>
 
+  <datasetRoot location="/home/ubuntu/dataset" path="tfm" />
+
   <datasetScan name="CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.historical original" path="tfm" location="/home/ubuntu/dataset/original">
     <serviceName>all</serviceName>
   </datasetScan>
+
+  <dataset name="CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.historical concatenated" ID="CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.historical-concatenated" urlPath="tfm/concatenated/CMIP6.CMIP.CNRM-CERFACS.CNRM-ESM2-1.historical">
+    <dataType>Grid</dataType>
+    <dataTypeFormat>NetCDF</dataTypeFormat>
+    <serviceName>all</serviceName>
+  </dataset>
 </catalog>
