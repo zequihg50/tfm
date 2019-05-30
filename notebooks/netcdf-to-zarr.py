@@ -12,4 +12,4 @@ end1 = time.time()
 ds.to_zarr(o)
 end2 = time.time()
 
-print('Time to open: {}. Time to save: {}.'.format(end1 - start, end2 - start))
+print('Time to open: {}. Time to save: {}.'.format(end1 - start, end2 - end1))
