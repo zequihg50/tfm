@@ -12,4 +12,4 @@ conda activate $name
 ./local.sh
 ```
 
-Run jupyter notebook and run `Local.ipynb`.
+Run jupyter notebook and run `local/Local.ipynb`.
