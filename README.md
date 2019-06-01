@@ -1,18 +1,14 @@
+# TFM
+
 ## Local
 
 Create your environment:
 
 ```bash
 name=NAME
-conda create -n $name -c conda-forge xarray zarr jupyter matplotlib dask
+conda create -n $name -c conda-forge xarray zarr jupyter matplotlib dask nco numcodecs bokeh
 conda activate $name
-pip install h5pyd
-```
-
-Set up environment:
-
-```bash
-cd notebooks
+#pip install h5pyd
 ./local.sh
 ```
 
