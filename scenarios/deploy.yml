@@ -81,3 +81,13 @@
     - name: Purge
       file: path={{ downloads }} state=absent
       tags: [never, purge]
+
+- name: Deploy HSDS
+  hosts: tfm-servidor
+  vars_files:
+    - secrets.yml
+  tags: hsds
+  roles:
+    - role: hsds
+  
+  

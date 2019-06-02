@@ -23,4 +23,5 @@ find $(pwd)/original -type f | parallel nccopy -d 0 -4 -c "time/2739,lat/8,lon/3
 
 ```bash
 pip install h5pyd
+hsload -u USER -p PASS NETCDF DEST
 ```
