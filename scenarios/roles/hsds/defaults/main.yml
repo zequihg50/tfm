@@ -1,0 +1,8 @@
+hsds_home: "{{ ansible_env.HOME }}/hsds"
+hsds_server_name: hsds.hdf.test
+hsds_bucket_name: hsds
+
+hsds_access_key: ACCESS_KEY
+hsds_secret: SECRET
+hsds_aws_region: REGION
+hsds_aws_s3_gateway: http://s3.amazonaws.com

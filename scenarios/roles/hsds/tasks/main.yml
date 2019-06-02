@@ -1,0 +1,30 @@
+- name: Install packages
+  become: True
+  package: name={{ item }} state=present
+  with_items: [docker.io, docker-compose]
+
+- name: Git clone HSDS
+  git: repo=https://github.com/HDFGroup/hsds dest={{ hsds_home }}
+
+- name: Copy password.txt
+  copy: src=password.txt dest={{ hsds_home }}/admin/config/passwd.txt
+
+- name: Add server name to /etc/hosts
+  become: True
+  lineinfile: path=/etc/hosts line="127.0.0.1 {{ hsds_server_name }}"
+
+- name: Add bashrc variables
+  blockinfile:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+    block: |
+      export AWS_ACCESS_KEY_ID="{{ hsds_access_key }}"
+      export AWS_SECRET_ACCESS_KEY="{{ hsds_secret }}"
+      export BUCKET_NAME="{{ hsds_bucket_name }}"
+      export AWS_REGION="{{ hsds_aws_region }}"
+      export AWS_S3_GATEWAY="{{ hsds_aws_s3_gateway }}"
+      export HSDS_ENDPOINT="http://{{ hsds_server_name }}"
+
+- name: Docker compose build
+  command: docker-compose build
+  args:
+    chdir: "{{ hsds_home }}"
