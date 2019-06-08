@@ -15,4 +15,4 @@ echo "Rechunking..."
 time nccopy -d 0 -4 -c "time/2739,lat/8,lon/32" shared/original/"$file" shared/chunked/"$file"
 
 echo "Converting NetCDF to Zarr..."
-time ./netcdf-to-zarr.py dataset/original/tas_AERhr_CNRM-ESM2-1_historical_r1i1p1f2_gr_185001010030-185412312330.nc dataset/zarr/tas_AERhr_CNRM-ESM2-1_historical_r1i1p1f2_gr_185001010030-185412312330
+time ./netcdf-to-zarr.py shared/original/tas_AERhr_CNRM-ESM2-1_historical_r1i1p1f2_gr_185001010030-185412312330.nc shared/zarr/tas_AERhr_CNRM-ESM2-1_historical_r1i1p1f2_gr_185001010030-185412312330
