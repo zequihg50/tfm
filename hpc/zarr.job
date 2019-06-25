@@ -1,0 +1,11 @@
+#!/bin/bash
+#SBATCH --time=10:00
+#SBATCH --reservation=test_4
+#SBATCH --nodes 2
+module load OPENMPI
+source ~/miniconda3/bin/activate zarr
+
+for i in 2 4 8
+do
+	srun --job-name=zarr-$i --ntasks $i --output zarr-$i.out hpc_zarr.py
+done

@@ -1,0 +1,11 @@
+#!/bin/bash
+#SBATCH --time=10:00
+#SBATCH --reservation=test_4
+#SBATCH --nodes 2
+module load OPENMPI
+source ~/miniconda3/bin/activate test
+
+for i in 2 4 8
+do
+	srun --job-name=netcdf4-$i --ntasks $i --output netcdf4-$i.out hpc_netcdf4.py
+done
