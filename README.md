@@ -1,6 +1,6 @@
 # TFM
 
-## Local (1 file)
+Notebooks, scripts and figures for the three access methods, local, remote, hpc, are available in the folders with the same name.
 
 Create your environment:
 
@@ -8,18 +8,12 @@ Create your environment:
 name=NAME
 conda create -n $name -c conda-forge xarray zarr jupyter matplotlib dask nco numcodecs bokeh
 conda activate $name
-./local.sh
+./local.sh # generate data for analysis
 ```
 
 Run jupyter notebook and run `local/Local.ipynb`.
 
-## Local (full dataset)
-
-```bash
-find $(pwd)/original -type f | parallel nccopy -d 0 -4 -c "time/2739,lat/8,lon/32" {} chunked/{/}
-```
-
-## Remote
+## Notes for HSDS
 
 ```bash
 pip install h5pyd
