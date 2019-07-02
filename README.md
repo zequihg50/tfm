@@ -13,9 +13,17 @@ conda activate $name
 
 Run jupyter notebook and run `local/Local.ipynb`.
 
-## Notes for HSDS
+## Remote
+
+`scenarios/deploy.yml` is an Ansible playbook to deploy the remote test, using two virtual machines as client and server.
+
+### Notes for HSDS
 
 ```bash
 pip install h5pyd
 hsload -u USER -p PASS NETCDF DEST
 ```
+
+## HPC
+
+Notes for deploying HPC test are located in the folder `netcdf-parallel`
